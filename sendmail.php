@@ -8,7 +8,6 @@ require 'vendor/autoload.php';
 $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
-// Now you can access the environment variables like this:
 $username = $_ENV['GMAIL_USERNAME'];
 $password = $_ENV['GMAIL_PASSWORD'];
 $host = $_ENV['SMTP_HOST'];
@@ -16,8 +15,9 @@ $port = $_ENV['SMTP_PORT'];
 
 //Create an instance; passing `true` enables exceptions
 $mail = new PHPMailer(true);
+
 // Allow cross-origin requests
-header("Access-Control-Allow-Origin: *"); // You can specify your Vue app's URL here for better security
+header("Access-Control-Allow-Origin: *"); 
 header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type");
 
