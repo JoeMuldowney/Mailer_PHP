@@ -13,8 +13,8 @@ pipeline {
         stage('Remove old build'){
             steps{
 
-                sh 'docker stop phpmailer || true'
-                sh 'docker rm phpmailer || true'
+                sh 'docker stop mailer || true'
+                sh 'docker rm mailer || true'
                 sh 'docker system prune -af'
             }
         }
@@ -35,21 +35,21 @@ pipeline {
                     sh 'docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD'
 
                     // Tag Docker image
-                    sh 'docker tag phpmailer:latest joemuldowney/phpmailer-portfolio'
+                    sh 'docker tag mailer joemuldowney/mailer-portfolio'
 
                     // Push Docker image to Docker Hub
-                    sh 'docker push joemuldowney/phpmailer-portfolio'
+                    sh 'docker push joemuldowney/mailer-portfolio'
            }
           }
         }
         stage('Deploy') {
             steps {
-                    sh 'docker run -d -p 8050:80 --name phpmailer \
+                    sh 'docker run -d -p 8008:80 --name mailer \
                     -e GMAIL_USERNAME=$GMAIL_USERNAME \
                     -e GMAIL_PASSWORD=$GMAIL_PASSWORD \
                     -e STMP_HOST=$STMP_HOST \
                     -e SMTP_PORT=$SMTP_PORT \
-                    joemuldowney/phpmailer-portfolio'
+                    joemuldowney/mailer-portfolio'
 
             }
         }
