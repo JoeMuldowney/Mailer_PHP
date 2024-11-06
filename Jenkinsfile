@@ -38,7 +38,7 @@ pipeline {
                     sh 'docker tag phpmailer:latest joemuldowney/phpmailer-portfolio'
 
                     // Push Docker image to Docker Hub
-                    sh 'docker push joemuldowney//phpmailer-portfolio'
+                    sh 'docker push joemuldowney/phpmailer-portfolio'
            }
           }
         }
