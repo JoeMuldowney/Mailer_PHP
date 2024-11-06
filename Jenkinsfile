@@ -24,7 +24,7 @@ pipeline {
                 checkout scm
 
                 // Build Docker image
-                sh 'docker build -t phpmailer .'
+                sh 'docker build -t mailer .'
             }
         }
         stage('Push to Docker Hub') {
