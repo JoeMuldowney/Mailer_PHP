@@ -35,10 +35,10 @@ pipeline {
                     sh 'docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD'
 
                     // Tag Docker image
-                    sh 'docker tag phpmailer joemuldowney/mailserver'
+                    sh 'docker tag phpmailer joemuldowney/phpmailer:latest'
 
                     // Push Docker image to Docker Hub
-                    sh 'docker push joemuldowney/mailserver'
+                    sh 'docker push joemuldowney/phpmailer:latest'
            }
           }
         }
@@ -49,7 +49,7 @@ pipeline {
                     -e GMAIL_PASSWORD=$GMAIL_PASSWORD \
                     -e STMP_HOST=$STMP_HOST \
                     -e SMTP_PORT=$SMTP_PORT \
-                    joemuldowney/mailserver'
+                    joemuldowney/phpmailer:latest'
 
             }
         }
