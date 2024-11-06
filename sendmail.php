@@ -2,16 +2,25 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
-use Dotenv\Dotenv;
 require 'vendor/autoload.php';
 
-$dotenv = Dotenv::createImmutable(__DIR__);
-$dotenv->load();
+// For local configuration
+//use Dotenv\Dotenv;
+// $dotenv = Dotenv::createImmutable(__DIR__);
+// $dotenv->load();
 
-$username = $_ENV['GMAIL_USERNAME'];
-$password = $_ENV['GMAIL_PASSWORD'];
-$host = $_ENV['SMTP_HOST'];
-$port = $_ENV['SMTP_PORT'];
+// $username = $_ENV['GMAIL_USERNAME'];
+// $password = $_ENV['GMAIL_PASSWORD'];
+// $host = $_ENV['SMTP_HOST'];
+// $port = $_ENV['SMTP_PORT'];
+
+
+// Access Jenkins environment variables
+$username = getenv('GMAIL_USERNAME');
+$password = getenv('GMAIL_PASSWORD');
+$host = getenv('SMTP_HOST');
+$port = getenv('SMTP_PORT');
+
 
 //Create an instance; passing `true` enables exceptions
 $mail = new PHPMailer(true);
