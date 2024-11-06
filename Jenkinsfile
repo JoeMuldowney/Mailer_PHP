@@ -13,8 +13,8 @@ pipeline {
         stage('Remove old build'){
             steps{
 
-                sh 'docker stop mailer || true'
-                sh 'docker rm mailer || true'
+                sh 'docker stop mai || true'
+                sh 'docker rm mail || true'
                 sh 'docker system prune -af'
             }
         }
@@ -24,7 +24,7 @@ pipeline {
                 checkout scm
 
                 // Build Docker image
-                sh 'docker build -t mailer .'
+                sh 'docker build -t mail .'
             }
         }
         stage('Push to Docker Hub') {
@@ -35,10 +35,10 @@ pipeline {
                     sh 'docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD'
 
                     // Tag Docker image
-                    sh 'docker tag mailer joemuldowney/mailer-portfolio'
+                    sh 'docker tag mail joemuldowney/get-mail'
 
                     // Push Docker image to Docker Hub
-                    sh 'docker push joemuldowney/mailer-portfolio'
+                    sh 'docker push joemuldowney/get-mail'
            }
           }
         }
@@ -49,7 +49,7 @@ pipeline {
                     -e GMAIL_PASSWORD=$GMAIL_PASSWORD \
                     -e STMP_HOST=$STMP_HOST \
                     -e SMTP_PORT=$SMTP_PORT \
-                    joemuldowney/mailer-portfolio'
+                    joemuldowney/get-mail'
 
             }
         }
